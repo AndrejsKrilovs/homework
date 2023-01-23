@@ -20,9 +20,9 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if(repository.count() == 0) {
-            IntStream.range(0, 125).mapToObj(index -> BookEntity.builder().name("Some Book " + index).build())
-                    .forEach(repository::save);
+        if (repository.count() == 0) {
+            IntStream.range(0, 125).mapToObj(index -> BookEntity.builder()
+                    .name("Some Book " + index).build()).forEach(repository::save);
         }
     }
 }
