@@ -23,8 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/previous**", "/next**").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", Boolean.TRUE).permitAll()
-                .and().logout().permitAll();
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", Boolean.TRUE).permitAll();
     }
 
     @Bean

@@ -12,8 +12,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -100,5 +103,11 @@ public class BookController {
 
     private Page<BookEntity> bookData(int pageNumber) {
         return repository.findAll(PageRequest.of(pageNumber, 50, Sort.by("addedAt").descending()));
+    }
+
+    @ResponseBody
+    @GetMapping("/books")
+    public List<BookEntity> listBookRestResponse() {
+        return repository.findAll();
     }
 }
