@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,6 +23,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BookController {
     private final BookRepository repository;
+    private final BookService service;
+
     private int totalPages;
     private int currentPage;
 
@@ -82,7 +81,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public String addBook(@Valid BookEntity book, BindingResult bindingResult, Model model) {
+    public String addBook(BookEntity book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             String error = bindingResult.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
@@ -91,7 +90,7 @@ public class BookController {
             model.addAttribute("error", error);
         } else {
             try {
-                repository.save(book);
+                service.addNewBook(book);
             } catch (RuntimeException e) {
                 model.addAttribute("error", "Book already persisted in database!");
                 return initPage(model);
@@ -107,7 +106,7 @@ public class BookController {
 
     @ResponseBody
     @GetMapping("/books")
-    public List<BookEntity> listBookRestResponse() {
-        return repository.findAll();
+    public Set<BookEntity> listBookRestResponse() {
+        return service.bookCollection();
     }
 }

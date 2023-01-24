@@ -34,7 +34,7 @@
                     <li class="page-item">
                         <form method="post" action="/previous">
                             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                            <input type="submit" class="page-link" value="<<">
+                            <input type="submit" class="page-link" value="previous" />
                         </form>
                     </li>
                     <li class="page-item">
@@ -43,7 +43,7 @@
                     <li class="page-item">
                         <form method="post" action="/next">
                             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                            <input type="submit" class="page-link" value=">>">
+                            <input type="submit" class="page-link" value="next" />
                         </form>
                     </li>
                 </ul>
@@ -56,12 +56,12 @@
                     <div class="col-sm-3">
                         <label for="name" class="form-label">Add new book</label>
                         <div class="input-group has-validation">
-                            <input type="text" id="name" class="form-control" name="name" value="" required
-                                   placeholder="Book name"/>
+                            <input type="text" id="name" class="form-control" name="name"
+                                   value="" placeholder="Book name" required="true"/>
                         </div>
                     </div>
                     <div class="col-sm-2">
-                        <label for="price"> &nbsp;</label>
+                        <label for="price"> </label>
                         <input type="text" id="price" class="form-control" name="price" value=""
                                placeholder="Book price"/>
                     </div>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <table class="table mt-1">
+    <table id="bookTable" class="table mt-1">
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -105,7 +105,7 @@
             <li class="page-item">
                 <form method="post" action="/previous">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="submit" class="page-link" value="<<">
+                    <input type="submit" class="page-link" value="previous" />
                 </form>
             </li>
             <li class="page-item">
@@ -114,7 +114,7 @@
             <li class="page-item">
                 <form method="post" action="/next">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="submit" class="page-link" value=">>">
+                    <input type="submit" class="page-link" value="next" />
                 </form>
             </li>
         </ul>
