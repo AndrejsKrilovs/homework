@@ -10,7 +10,7 @@
 All users can show needed books, but admin can add those.
 
 **Preinstall steps:**
-* Just download run *-jar* command.
+* Just download -jar generated file and run *-jar* command.
 * Then go to http://localhost:8080/ and application will works.
 
 Some additional steps to be implemented:
